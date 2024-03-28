@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import ReactTextareaAutosize from 'react-textarea-autosize';
+import Link from 'next/link';
 
 const inputClass =
   'w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300';
@@ -33,10 +34,10 @@ const FormNewPost = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('api/posts', formData);
+      const response = await axios.post('/api/posts', formData);
 
       if (response.status === 200) {
-        router.push(`/blogs/${response.data.newPost.id}`);
+        router.push(`/blog/${response.data.newPost.id}`);
       }
     } catch (error) {
       console.error(error);
@@ -46,8 +47,10 @@ const FormNewPost = () => {
   return (
     
     <form className='max-w-md mx-auto p-4' onSubmit={handleSubmit}>
-      <h1 className="text-3xl font-bold mb-8 text-center">Nouveau post</h1>
       <div className='mb-4'>
+      <Link href="/blog/">
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">  back</button>
+      </Link>
         <input
           type='text'
           className={inputClass}

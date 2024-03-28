@@ -1,17 +1,38 @@
-import Header from "@/components/header.component";
-import Link from "next/link";
+import {prisma} from '@/lib/prisma';
+import Link from 'next/link';
 
-export default function RegisterPage() {
+const BlogsPage = async () => {
+  const posts = await prisma.post.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
+    include: {
+      author: true,
+    },
+  });
+
   return (
-    <>
-      <Header />
-        <Link href="/blog/newform">
-          <div className="flex items-center justify-center ">
+    <div className='max-w-4xl mx-auto py-8'>
+      <h1 className='text-3xl font-bold mb-4'>Blogs</h1>
+      <Link href="/blog/newform">
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-center">
               Nouveau post
             </button>
-          </div>        
-        </Link>
-    </>
+          </Link>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
+        {posts.map((post) => (
+          <Link
+            key={post.id}
+            href={`/blog/${post.id}`}
+            className='bg-white p-4 rounded-md shadow-md'
+          >
+            <h2 className='text-xl font-bold'>{post.title}</h2>
+            <p>Written by: {post.author?.name}</p>
+          </Link>
+        ))}
+      </div>
+    </div>
   );
-}
+};
+
+export default BlogsPage;

@@ -76,6 +76,12 @@ model Activites {
 
 
 
+//npx prisma generate  pour générer le client prisma
+//npx prisma migrate dev --name "init" pour créer une migration initiale
+//npx prisma migrate dev --name "nomde la migration" pour créer une migration
+//npx prisma migrate dev pour appliquer la migration
+//npx prisma studio pour ouvrir l'interface de prisma
+
 
 
 
