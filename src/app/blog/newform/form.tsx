@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import ReactTextareaAutosize from 'react-textarea-autosize';
+import Link from 'next/link';
 
 const inputClass =
   'w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300';
@@ -47,6 +48,9 @@ const FormNewPost = () => {
     
     <form className='max-w-md mx-auto p-4' onSubmit={handleSubmit}>
       <div className='mb-4'>
+      <Link href="/blog/">
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">  back</button>
+      </Link>
         <input
           type='text'
           className={inputClass}
