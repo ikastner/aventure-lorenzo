@@ -4,7 +4,7 @@ import FormNewPost from "./form";
 export default function RegisterPage() {
     return (
         <>
-            <Header />
+            
             <FormNewPost />
         </>
     );

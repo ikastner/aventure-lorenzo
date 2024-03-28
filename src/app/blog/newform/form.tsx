@@ -33,10 +33,10 @@ const FormNewPost = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('api/posts', formData);
+      const response = await axios.post('/api/posts', formData);
 
       if (response.status === 200) {
-        router.push(`/blogs/${response.data.newPost.id}`);
+        router.push(`/blog/${response.data.newPost.id}`);
       }
     } catch (error) {
       console.error(error);
@@ -46,7 +46,6 @@ const FormNewPost = () => {
   return (
     
     <form className='max-w-md mx-auto p-4' onSubmit={handleSubmit}>
-      <h1 className="text-3xl font-bold mb-8 text-center">Nouveau post</h1>
       <div className='mb-4'>
         <input
           type='text'
